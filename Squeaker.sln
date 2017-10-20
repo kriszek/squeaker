@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Squeaker.UI.MVC", "Squeaker.UI.MVC\Squeaker.UI.MVC.csproj", "{FC1A2476-8ABF-4044-B33E-58A70A385420}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Squeaker.UI.MVC.Tests", "Squeaker.UI.MVC.Tests\Squeaker.UI.MVC.Tests.csproj", "{74CC27C2-91BE-4E5C-A19A-E7481FF5BA56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Squeaker.Model", "Squeaker.Model\Squeaker.Model.csproj", "{3DF993DC-1776-48C8-AB7D-A7B8AC1AC332}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FC1A2476-8ABF-4044-B33E-58A70A385420}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC1A2476-8ABF-4044-B33E-58A70A385420}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC1A2476-8ABF-4044-B33E-58A70A385420}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC1A2476-8ABF-4044-B33E-58A70A385420}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74CC27C2-91BE-4E5C-A19A-E7481FF5BA56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74CC27C2-91BE-4E5C-A19A-E7481FF5BA56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74CC27C2-91BE-4E5C-A19A-E7481FF5BA56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74CC27C2-91BE-4E5C-A19A-E7481FF5BA56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DF993DC-1776-48C8-AB7D-A7B8AC1AC332}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DF993DC-1776-48C8-AB7D-A7B8AC1AC332}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DF993DC-1776-48C8-AB7D-A7B8AC1AC332}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DF993DC-1776-48C8-AB7D-A7B8AC1AC332}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
