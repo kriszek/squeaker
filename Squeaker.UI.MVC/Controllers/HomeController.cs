@@ -10,7 +10,8 @@ namespace Squeaker.UI.MVC.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var db = new DataAccess.SqueakerContext();
+            return View(db.Squeaks);
         }
 
         public ActionResult About()

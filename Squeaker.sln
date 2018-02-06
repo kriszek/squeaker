@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Squeaker.UI.MVC.Tests", "Sq
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Squeaker.Model", "Squeaker.Model\Squeaker.Model.csproj", "{3DF993DC-1776-48C8-AB7D-A7B8AC1AC332}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Squeaker.DataAccess", "Squeaker.DataAccess\Squeaker.DataAccess.csproj", "{251F3209-839A-4E19-8392-16990627A694}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{3DF993DC-1776-48C8-AB7D-A7B8AC1AC332}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DF993DC-1776-48C8-AB7D-A7B8AC1AC332}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DF993DC-1776-48C8-AB7D-A7B8AC1AC332}.Release|Any CPU.Build.0 = Release|Any CPU
+		{251F3209-839A-4E19-8392-16990627A694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{251F3209-839A-4E19-8392-16990627A694}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{251F3209-839A-4E19-8392-16990627A694}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{251F3209-839A-4E19-8392-16990627A694}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
