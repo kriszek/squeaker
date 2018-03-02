@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Squeaker.UI.MVC.Models;
+using Squeaker.Model;
 
 namespace Squeaker.UI.MVC.Controllers
 {
@@ -22,7 +23,7 @@ namespace Squeaker.UI.MVC.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -34,9 +35,9 @@ namespace Squeaker.UI.MVC.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -73,9 +74,16 @@ namespace Squeaker.UI.MVC.Controllers
                 return View(model);
             }
 
+            var user = await UserManager.FindByEmailAsync(model.Email);
+
+            if(user == null)
+            {
+                return UnsuccessfulLogin(model);
+            }
+
             // Nie powoduje to liczenia niepowodzeń logowania w celu zablokowania konta
             // Aby włączyć wyzwalanie blokady konta po określonej liczbie niepomyślnych prób wprowadzenia hasła, zmień ustawienie na shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -86,9 +94,14 @@ namespace Squeaker.UI.MVC.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Nieprawidłowa próba logowania.");
-                    return View(model);
+                    return UnsuccessfulLogin(model);
             }
+        }
+
+        private ActionResult UnsuccessfulLogin(LoginViewModel model)
+        {
+            ModelState.AddModelError("", "Nieprawidłowa próba logowania.");
+            return View(model);
         }
 
         //
@@ -120,7 +133,7 @@ namespace Squeaker.UI.MVC.Controllers
             // Jeśli użytkownik będzie wprowadzać niepoprawny kod przez określoną ilość czasu, konto użytkownika 
             // zostanie zablokowane na określoną ilość czasu. 
             // Możesz skonfigurować ustawienia blokady konta w elemencie IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -155,8 +168,8 @@ namespace Squeaker.UI.MVC.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Wyślij wiadomość e-mail z tym łączem
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

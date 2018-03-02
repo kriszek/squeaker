@@ -6,6 +6,8 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using Squeaker.UI.MVC.Models;
+using Squeaker.DataAccess;
+using Squeaker.Model;
 
 namespace Squeaker.UI.MVC
 {
@@ -15,7 +17,7 @@ namespace Squeaker.UI.MVC
         public void ConfigureAuth(IAppBuilder app)
         {
             // Skonfiguruj kontekst bazy danych, menedżera użytkowników i menedżera logowania, aby używać jednego wystąpienia na żądanie
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
+            app.CreatePerOwinContext(SqueakerContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 

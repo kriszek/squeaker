@@ -11,7 +11,7 @@ namespace Squeaker.DataAccess
     {
         protected override void Seed(SqueakerContext context)
         {
-
+            base.Seed(context);
         }
     }
 }

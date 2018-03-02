@@ -10,8 +10,10 @@ namespace Squeaker.Model
     {
         public int ID { get; set; }
         public string Text { get; set; }
+        public string OwnerID { get; set; }
         public DateTimeOffset CreationDate { get; set; }
 
         public virtual ICollection<SqueakComment> SqueakComments { get; set; }
+        public virtual ApplicationUser Owner { get; set; }
     }
 }

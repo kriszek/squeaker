@@ -11,6 +11,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Squeaker.UI.MVC.Models;
+using Squeaker.Model;
+using Squeaker.DataAccess;
 
 namespace Squeaker.UI.MVC
 {
@@ -42,7 +44,7 @@ namespace Squeaker.UI.MVC
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
         {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
+            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<SqueakerContext>()));
             // Konfiguruj logikę weryfikacji nazw użytkowników
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {

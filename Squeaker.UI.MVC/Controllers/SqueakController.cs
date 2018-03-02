@@ -1,12 +1,11 @@
 ﻿using Squeaker.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
 
 namespace Squeaker.UI.MVC.Controllers
 {
+    [Authorize]
     public class SqueakController : Controller
     {
         // GET: Squeak
@@ -29,10 +28,13 @@ namespace Squeaker.UI.MVC.Controllers
             {
                 model.ID = 0;
                 model.CreationDate = DateTimeOffset.UtcNow;
+                model.OwnerID = User.Identity.GetUserId();
 
-                DataAccess.SqueakerContext db = new DataAccess.SqueakerContext();
-                db.Squeaks.Add(model);
-                db.SaveChanges();
+                using (DataAccess.SqueakerContext db = new DataAccess.SqueakerContext())
+                {
+                    db.Squeaks.Add(model);
+                    db.SaveChanges(); 
+                }
 
                 return RedirectToAction("Index", "Home");
             }
