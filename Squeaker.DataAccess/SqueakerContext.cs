@@ -22,8 +22,11 @@ namespace Squeaker.DataAccess
             return new SqueakerContext();
         }
 
+        
         public DbSet<Squeak> Squeaks { get; set; }
         public DbSet<SqueakComment> SqueakComments { get; set; }
+
+        public DbSet<IdentityUserRole> UserRoles { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
